@@ -27,7 +27,8 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 	private static final String url = "http://10.0.2.2:8080/FirstServer/firstlogin";
 	private static final String url1 = "http://10.0.2.2:8080/FirstServer/LoginServlet2";
-	private Button loginBtn, loginXutilsBtn;
+	private static final String url2 = "http://10.0.2.2:8080/FirstServer/LoginServlet3";
+	private Button loginBtn, loginXutilsBtn, loginHibernateBtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends Activity {
 		x.Ext.setDebug(true);
 		loginBtn = (Button) findViewById(R.id.test_btn);
 		loginXutilsBtn = (Button) findViewById(R.id.test_xutils_btn);
+		loginHibernateBtn = (Button) findViewById(R.id.test_hibernate_btn);
 		loginBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -50,6 +52,46 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				xUtilsLogin();
+			}
+		});
+		loginHibernateBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				xUtilsHiberLogin();
+			}
+		});
+	}
+
+	public void xUtilsHiberLogin() {
+
+		RequestParams p = new RequestParams(url2);
+		p.addBodyParameter("name", "test");
+		p.addBodyParameter("password", "111111");
+		p.addBodyParameter("wd", "xUtils");
+		x.http().post(p, new CommonCallback<String>() {
+
+			@Override
+			public void onCancelled(CancelledException arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onError(Throwable arg0, boolean arg1) {
+				// TODO Auto-generated method stub
+				loginHibernateBtn.setText("XutilsHibernateµÇÂ½Ê§°Ü");
+			}
+
+			@Override
+			public void onFinished() {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onSuccess(String arg0) {
+				loginHibernateBtn.setText("XutilsHibernateµÇÂ½³É¹¦");
 			}
 		});
 	}

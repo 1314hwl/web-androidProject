@@ -16,4 +16,10 @@
         android:layout_height="wrap_content"
         android:text="Xutils模拟登陆" />
 
+    <Button
+        android:id="@+id/test_hibernate_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hibernate模拟登陆" />
+
 </LinearLayout>
