@@ -22,4 +22,10 @@
         android:layout_height="wrap_content"
         android:text="hibernate模拟登陆" />
 
+    <Button
+        android:id="@+id/test_spring_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="spring模拟登陆" />
+
 </LinearLayout>

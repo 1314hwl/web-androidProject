@@ -28,7 +28,8 @@ public class MainActivity extends Activity {
 	private static final String url = "http://10.0.2.2:8080/FirstServer/firstlogin";
 	private static final String url1 = "http://10.0.2.2:8080/FirstServer/LoginServlet2";
 	private static final String url2 = "http://10.0.2.2:8080/FirstServer/LoginServlet3";
-	private Button loginBtn, loginXutilsBtn, loginHibernateBtn;
+	private static final String url3 = "http://10.0.2.2:8080/FirstServer/LoginServlet4";
+	private Button loginBtn, loginXutilsBtn, loginHibernateBtn, loginSpringBtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends Activity {
 		loginBtn = (Button) findViewById(R.id.test_btn);
 		loginXutilsBtn = (Button) findViewById(R.id.test_xutils_btn);
 		loginHibernateBtn = (Button) findViewById(R.id.test_hibernate_btn);
+		loginSpringBtn = (Button) findViewById(R.id.test_spring_btn);
 		loginBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -59,6 +61,13 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				xUtilsHiberLogin();
+			}
+		});
+		loginSpringBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				xUtilsSpringLogin();
 			}
 		});
 	}
@@ -92,6 +101,39 @@ public class MainActivity extends Activity {
 			@Override
 			public void onSuccess(String arg0) {
 				loginHibernateBtn.setText("XutilsHibernateµÇÂ½³É¹¦");
+			}
+		});
+	}
+
+	public void xUtilsSpringLogin() {
+
+		RequestParams p = new RequestParams(url3);
+		p.addBodyParameter("name", "test");
+		p.addBodyParameter("password", "111111");
+		p.addBodyParameter("wd", "xUtils");
+		x.http().post(p, new CommonCallback<String>() {
+
+			@Override
+			public void onCancelled(CancelledException arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onError(Throwable arg0, boolean arg1) {
+				// TODO Auto-generated method stub
+				loginSpringBtn.setText("XutilsSpirngµÇÂ½Ê§°Ü");
+			}
+
+			@Override
+			public void onFinished() {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onSuccess(String arg0) {
+				loginSpringBtn.setText("XutilsSpirngµÇÂ½³É¹¦");
 			}
 		});
 	}
